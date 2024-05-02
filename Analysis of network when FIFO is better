@@ -1,0 +1,7 @@
+In this example the FIFO implementation first saturates arcs (0,1) and (0,2). The algorithm will then saturate in the order of (1,3), (2,3), (2,4) or in the order of (2,3), (2,4), (1,3). In either case, we end up with a queue of [3,4] or [4,3]. The algorithm then
+saturates (4,5) and (3,5), and works to send back the excess of 2 units from node 3 back to the source. As node 3 is the only active node, the algorithm will simply relabel node 3 two times in a row and then send the charge back to the source through nodes 1 and 2.
+
+The generic implementation may not pick active nodes in this type of order. For instance, after saturating arcs (0,1) and (0,2), the generic algorithm may then saturate arcs (1,3) and then (3,5). As node 3 would remain active, the algorithm may then send the 1 excess flow 
+all the way back to the source, and then node 3 may receive another single excess flow from node 2. This flow would then have to be sent all the back to the source once more. The FIFO implementation ensures that node 3 already has 2 units of flow when it inevitably must 
+send it back to the source. Thus, the FIFO implementation cuts down on how many times excess flow must be sent back to the source. Note that this type of network can be generalized to be much larger, and thus cutting down even more on the number of operations needed
+when comparing FIFO and general implementations of preflow-push.
