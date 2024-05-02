@@ -1,0 +1,4 @@
+For a network that is simply a path, the FIFO implementation will always compute the same series of steps each time we run the algorithm. Namely, there is no ambiguity about how vertices will be ordered in the queue during any given phase. This can be to the detriment of 
+the running time of the algorithm in these particular cases, as the FIFO algorithm may be forced to bounce back and forth between relabelings in order to return excess flow back to the source(as we see in our example). As the generic algorithm may pick from any active
+node at any time, it may avoid this type of issue. Note that the generic algorithm may simply end up picking the same active nodes that the FIFO algorithm picked, and so the worst case comparison is the same. However, on average, the generic algorithm will perform better
+for these specific networks.
